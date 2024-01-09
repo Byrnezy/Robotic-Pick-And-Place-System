@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_empty_world.launch"/>
+    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_gazebo_rviz.launch"/>
+    <node pkg="Lab2" type="lab2.py" name="lab2"></node>
+</launch>

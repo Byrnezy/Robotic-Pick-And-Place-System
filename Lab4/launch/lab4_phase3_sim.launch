@@ -1,0 +1,16 @@
+<launch>
+    <include file="$(find Lab4)/launch/final_maze.launch"/>
+    
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find Lab4)/rviz/lab4_mapping.rviz"/>
+    <!-- <node pkg="tf" type="static_transform_publisher" name="transform" args="0 0 0 0 0 0 /map /odom 100"></node> --> 
+    <node pkg="map_server" type="map_server" name="map" args="$(find Lab4)/maps/test_map.yaml"></node> 
+    <node pkg="amcl" type="amcl" name="amcl" args="scan:=scan">
+    	<param name="update_min_a" type="double" value="0.02"/>
+    	<param name="update_min_d" type="double" value="0.05"/>
+    	<param name="min_particles" type="int" value="500"/>
+    	<param name="max_particles" type="int" value="10000"/>
+    </node>
+    <node pkg="Lab4" type="path_planner.py" name="path_planning"></node>
+    <node pkg="Lab4" type="drive.py" name="drive"></node>
+    <node pkg="Lab4" type="main2.py" name="main2"></node>
+</launch>

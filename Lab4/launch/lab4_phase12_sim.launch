@@ -1,0 +1,12 @@
+<launch>
+    <include file="$(find Lab4)/launch/final_maze.launch"/>
+    
+    <include file="$(find Lab4)/launch/slam.launch">
+      <arg name="slam_methods" value="gmapping"/>
+    </include>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find Lab4)/rviz/lab4_mapping.rviz"/>
+    <node pkg="Lab4" type="path_planner.py" name="path_planning"></node>
+    <node pkg="Lab4" type="drive.py" name="drive"></node>
+    <node pkg="Lab4" type="frontier_mapping.py" name="frontier"></node>
+    <node pkg="Lab4" type="main.py" name="main"></node>
+</launch>
